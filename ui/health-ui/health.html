@@ -1,0 +1,12 @@
+<div ng-controller="healthController as hc">
+    <mn-element-cargo depot="subnav">
+        <nav class="sub-nav">
+            <a ui-sref="app.admin.health.summary" ui-sref-active="selected">
+                Summary</a>
+            <a ui-sref="app.admin.health.connectivity"
+               ng-class="{selected: ('app.admin.health.connectivity' | includedByState)}">
+                Connectivity</a>
+        </nav>
+    </mn-element-cargo>
+    <div ui-view=""></div>
+</div>

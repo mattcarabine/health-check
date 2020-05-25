@@ -1,0 +1,13 @@
+{
+  "service": "health",
+  "proxy-strategy": "@PROXY_STRATEGY@",
+  "rest-api-prefixes": {
+    "health": {
+      "portName": "health_port"
+    }
+  },
+   "version-dirs": [
+    {"version": [5, 0], "dir": "."}
+  ],
+  "doc-root": "@BIN_PREFIX@health-ui"
+}

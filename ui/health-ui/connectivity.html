@@ -1,0 +1,34 @@
+<div
+        mn-spinner="hc.showSpinner"
+        min-height="110px">
+    <div ng-repeat="node in hc.ping">
+        <div
+                class="disclosure"
+                ng-class="{disclosed: hc.pingNodeDroppedDown(node.node)}"
+                ng-click="hc.togglePingDropdown(node.node)">
+            {{node.node}}
+        </div>
+        <div
+                ng-show="hc.pingNodeDroppedDown(node.node) && hc.someUnreachable(node.pingReports)"
+                ng-repeat="report in node.pingReports"
+                class="indent-1-5">
+            <div
+                    class="disclosure"
+                    ng-class="{disclosed: hc.pingNodeDroppedDown(node.node, report.node)}"
+                    ng-click="hc.togglePingDropdown(node.node, report.node)">
+                {{report.node}}
+            </div>
+            <div ng-show="hc.pingNodeDroppedDown(node.node, report.node)" class="indent-1-5">
+                <div ng-if="!report.unreachablePorts">
+                    Full connectivity!
+                </div>
+                <div ng-if="report.unreachablePorts" ng-repeat="port in report.unreachablePorts">
+                    {{port.name}} - {{port.port}}
+                </div>
+            </div>
+        </div>
+        <div class="indent-1-5" ng-show="hc.pingNodeDroppedDown(node.node) && !hc.someUnreachable(node.pingReports)">
+            Full Connectivity!
+        </div>
+    </div>
+</div>
